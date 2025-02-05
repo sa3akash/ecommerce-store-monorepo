@@ -1,4 +1,4 @@
-FROM node:16-alpine AS base
+FROM node:22-alpine AS base
 WORKDIR /usr/src/app
 
 # install dependencies into temp directory
