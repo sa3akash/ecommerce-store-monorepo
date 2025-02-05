@@ -17,9 +17,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@libs/ui": ["libs/ui/src"],
-      "@libs/form": ["libs/form/src"],
-      "@libs/network": ["libs/network/src"]
+      "@ecommerce/ui": ["libs/ui/src"],
+      "@ecommerce/ui/*": ["libs/ui/src/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
