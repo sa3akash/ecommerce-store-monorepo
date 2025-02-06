@@ -33,6 +33,12 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    -color-primary: #B275F7  ;
+    -color-link: #0E55FF;
+    -color-worning: #FF1212;
+    -color-atttention: #FFA800;
+    -color-success: #06C270;
+    -color-secondery: #606BBF;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -67,6 +73,54 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground w-screen h-screen;
+    @apply bg-background text-foreground w-screen h-screen box-border;
   }
+
+  .h1 {
+    @apply text-[96px] leading-[105] tracking-[-1.5%]
+  }
+  .h2 {
+    @apply text-[60px] leading-[68] tracking-[-0.5%]
+  }
+  .h3 {
+    @apply text-[48px] leading-[52] tracking-[0%]
+  }
+  .h4 {
+    @apply text-[34px] leading-[40] tracking-[0.25%]
+  }
+
+  .h5 {
+    @apply text-[26px] leading-[32] tracking-[0px]
+  }
+  .h6 {
+    @apply text-[20px] leading-[24] tracking-[0.15%]
+  }
+
+  .subTitle-1 {
+    @apply text-[16px] leading-[20] tracking-[1.25%]
+  }
+  .subTitle-2 {
+    @apply text-[14px] leading-[20] tracking-[1%]
+  }
+  .body-1 {
+    @apply text-[16px] leading-[24] tracking-[0.5%]
+  }
+
+  .body-2 {
+    @apply text-[14px] leading-[20] tracking-[0.25%]
+  }
+  .caption {
+    @apply text-[12px] leading-[16] tracking-[0.4%]
+  }
+  .overline {
+    @apply text-[10px] leading-[16] tracking-[1.5%]
+  }
+
+  .button {
+    @apply text-[14px] leading-[20] tracking-[1.25%]
+  }
+  .bg-gradient {
+    @apply bg-gradient-to-r from-[#8974f7] to-[#d25bf7]
+  }
+
 }

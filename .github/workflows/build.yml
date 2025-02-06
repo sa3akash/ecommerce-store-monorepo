@@ -32,9 +32,9 @@ jobs:
           file: apps/api/Dockerfile
           push: true
           tags: |
-            sa2avroo/ecommerce-server-node:latest
-            sa2avroo/ecommerce-server-node:${{ github.sha }}
-            sa2avroo/ecommerce-server-node:${{ github.ref_name }}
+            sa2avroo/ecommerce-api-node:latest
+            sa2avroo/ecommerce-api-node:${{ github.sha }}
+            sa2avroo/ecommerce-api-node:${{ github.ref_name }}
       - name: Logout from Docker Hub
         run: docker logout
 
