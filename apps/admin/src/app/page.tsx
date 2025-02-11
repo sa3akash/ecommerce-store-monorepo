@@ -1,7 +1,7 @@
 'use client'
 
-import { useThemes } from '@ecommerce/ui/components/providers/theme-provider';
-import { Button } from '@ecommerce/ui/components/ui/button'
+import { useThemes } from '@components/providers/theme-provider';
+import { Button } from '@components/ui/button'
 
 export default function Home() {
 

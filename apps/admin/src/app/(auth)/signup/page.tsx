@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SignUpPage from '@ecommerce/ui/templates/signup-page'
+import SignUpPage from '@ui/templates/signup-page'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

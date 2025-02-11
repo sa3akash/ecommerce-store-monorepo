@@ -1,5 +1,5 @@
 import React from 'react'
-import SignInPage from '@ecommerce/ui/templates/signin-page'
+import SignInPage from '@ui/templates/signin-page'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

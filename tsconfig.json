@@ -14,7 +14,17 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "resolveJsonModule": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@ecommerce/ui/*": ["libs/ui/src/*"] // Ensure the alias is set
+    },
+
   },
+  "references": [
+    { "path": "apps/api" },
+    { "path": "apps/web" },
+    { "path": "libs/form" },
+    { "path": "libs/ui" },
+  ],
   "exclude": ["node_modules"]
 }
