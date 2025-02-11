@@ -14,6 +14,10 @@ const AuthSchema = new mongoose.Schema<IAuth>(
       unique: true,
       index: true
     },
+    password: {
+      type:String,
+      required:true
+    },
     varified: {
       type: Boolean,
       default: false

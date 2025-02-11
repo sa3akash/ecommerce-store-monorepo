@@ -1,15 +1,15 @@
 name: master-auth
 
 services:
-#   mongo:
-#     image: mongo
-#     ports:
-#       - 27017:27017
-#     environment:
-#       MONGO_INITDB_ROOT_USERNAME: root
-#       MONGO_INITDB_ROOT_PASSWORD: example
-#     volumes:
-#       - mongodb:/etc/mongo
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongodb:/etc/mongo
   redis:
     image: redis:alpine
     ports:
@@ -20,7 +20,7 @@ services:
       - local-data:/data
 
 volumes:
-  # mongodb:
-  #   driver: local
+  mongodb:
+    driver: local
   local-data:
     driver: local

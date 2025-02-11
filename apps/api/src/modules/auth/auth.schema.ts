@@ -19,6 +19,13 @@ export const SignUpSchema: ObjectSchema = Joi.object().keys({
   })
 });
 
+export const VerifyEmailSchema: ObjectSchema = Joi.object().keys({
+  token: Joi.string().required().messages({
+    'string.base': 'Token must be of type string.',
+    'string.empty': 'Token is a required field.'
+  }),
+});
+
 export const SignInSchema: ObjectSchema = Joi.object().keys({
   email: Joi.string().required().email().messages({
     'string.base': 'Email must be of type string.',

@@ -13,7 +13,7 @@ class MailTransport {
       html: template
     };
 
-    this.emailSender(mailOptions).then();
+  this.emailSender(mailOptions);
   }
 
   private async emailSender(mailOptions: Mail.Options) {

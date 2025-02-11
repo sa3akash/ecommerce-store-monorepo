@@ -1,4 +1,4 @@
-// import { mailTransport } from '@services/mailers/mailTransporter';
+import { mailTransport } from '@/services/emails/mailTransporter';
 import { DoneCallback, Job } from 'bull';
 
 class EmailWorker {
@@ -6,7 +6,7 @@ class EmailWorker {
     try {
       const { receiverEmail, template, subject } = job.data;
       // save data in db
-      // await mailTransport.sendMail(receiverEmail, subject, template);
+      await mailTransport.sendMail(receiverEmail, subject, template);
       // add method to save data in db
       job.progress(100).then();
       done(null, job.data);
