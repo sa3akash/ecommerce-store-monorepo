@@ -1,0 +1,16 @@
+{
+  "name": "@ecommerce/utils",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "dependencies": {
+    "mongoose": "^8.10.0"
+  }
+}

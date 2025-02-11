@@ -13,6 +13,10 @@ import { createAdapter } from '@socket.io/redis-adapter';
 
 import { config } from '@/config';
 import mainRoute from '@/routes';
+import { routeRateLimiter } from '@services/utils/rateLimiter';
+
+const log = config.createLogger('SETUP_SERVER');
+
 
 export class SetupServer {
   private readonly app: Application;
@@ -47,6 +51,7 @@ export class SetupServer {
     );
     app.use(helmet());
     app.use(hpp());
+    app.use(routeRateLimiter())
     // app.use(cookieParser());
   }
 
@@ -92,7 +97,7 @@ export class SetupServer {
     httpServer.listen(config.PORT, async () => {
       const socketIO: Server = await this.createSocketIO(httpServer);
       this.socketIoConnection(socketIO);
-      console.log(`STARTING SERVER ON PORT ${config.PORT} PROCESS ID =${process.pid}`);
+      log.info(`STARTING SERVER ON PORT ${config.PORT} PROCESS ID =${process.pid}`);
     });
   }
 

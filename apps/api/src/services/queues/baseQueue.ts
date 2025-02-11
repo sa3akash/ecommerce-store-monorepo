@@ -1,0 +1,36 @@
+import { config } from '@/config';
+import Queue, { Job } from 'bull';
+
+const log = config.createLogger('BASE_QUEUE');
+
+
+export abstract class BaseQueue {
+  queue: Queue.Queue;
+
+  constructor(queueName:string){
+    this.queue = new Queue(queueName, `${config.REDIS_URL!}`);
+
+    this.queue.on('completed',(job:Job)=>{
+      job.remove().then()
+    })
+
+    this.queue.on('global:completed', (jobId: string) => {
+      log.info(`Job ${jobId} completed.`);
+    });
+
+    this.queue.on('global:stalled', (jobId: string) => {
+      log.info(`Job ${jobId} stalled.`);
+    });
+  }
+
+  protected addJob(name: string, data: any): void {
+    this.queue
+      .add(name, data, { attempts: 3, backoff: { type: 'fixed', delay: 5000 }, removeOnComplete: true, removeOnFail: true })
+      .then();
+  }
+
+  protected processJob(name: string, concurrency: number, callback: Queue.ProcessCallbackFunction<void>): void {
+    this.queue.process(name, concurrency, callback).then();
+  }
+
+}
