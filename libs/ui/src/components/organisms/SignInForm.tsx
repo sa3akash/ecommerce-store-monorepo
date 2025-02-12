@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '../../lib/utils';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
@@ -7,11 +9,17 @@ import Link from 'next/link';
 import ContinueWithSocial from '../atoms/ContinueWithSocial';
 import SeparateWith from '../atoms/SeparateWith';
 import TermsAndService from '../atoms/TermsAndService';
+import { useActionState } from 'react';
+import { signinAction } from '@ecommerce/network/src/actions/signin.action';
 
-export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+  const [state, action, pending] = useActionState(signinAction, undefined);
+
+  console.log(state);
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <form>
+      <form action={action}>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
             <Link href="/" className="flex flex-col items-center gap-2 font-medium">
@@ -31,8 +39,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="jonn@example.com" required />
+              <Input id="email" name="email" disabled={pending} type="email" placeholder="jonn@example.com" required />
             </div>
+            {/* {state?.errors?.email && <p className='space-y-2 text-rose-400'>{state.errors.email}</p>} */}
             <div className="grid gap-2">
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
@@ -40,17 +49,23 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   Forgot your password?
                 </a>
               </div>
-              <Input id="password" type="password" required placeholder="********"/>
+              <Input disabled={pending} id="password" name="password" type="password" required placeholder="********" />
             </div>
-            <Button type="submit" className="w-full">
+
+            {state?.success ===false ? (
+              <div className="bg-rose-300 text-rose-800 px-4 py-3 rounded-md text-sm">{state?.message}</div>
+            ) : (
+              <div className="bg-green-300 text-green-800"> {state?.message} </div>
+            )}
+            <Button type="submit" className="w-full" disabled={pending}>
               Login
             </Button>
           </div>
-          <SeparateWith text='Or Continue with' />
+          <SeparateWith text="Or Continue with" />
           <ContinueWithSocial />
         </div>
       </form>
       <TermsAndService />
     </div>
   );
-}
+};

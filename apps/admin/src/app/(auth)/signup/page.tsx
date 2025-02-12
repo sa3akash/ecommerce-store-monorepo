@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   description: "Authentication forms built using the components.",
 }
 
-const SignUp = () => {
+const SignUp = async () => {
+
   return (
     <div className='h-screen'>
       <SignUpPage />
