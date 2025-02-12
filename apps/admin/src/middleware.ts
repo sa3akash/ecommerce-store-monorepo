@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { apiAuthPrefix, authRoutes, DEFAULT_Logged_Redirect, publicRoutes } from './routes';
+import { apiAuthPrefix } from './routes';
 import { getSession } from '@ecommerce/network/src/sessions/session';
 // import { getSession } from "@/lib/session";
 

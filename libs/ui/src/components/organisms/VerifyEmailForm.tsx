@@ -17,7 +17,7 @@ export const VerifyEmailForm = ({ className, ...props }: React.ComponentProps<'d
   const token = searchParams.get('token');
 
   if (!token) {
-    return router.push('signin');
+    router.push('signin');
   }
 
   return (
@@ -40,7 +40,7 @@ export const VerifyEmailForm = ({ className, ...props }: React.ComponentProps<'d
             </div>
           </div>
           <div className="flex flex-col gap-6">
-            <input type="text" name="token" defaultValue={token} className="sr-only" />
+            <input type="text" name="token" defaultValue={token || ''} className="sr-only" />
             <Button type="submit" variant={(state?.success === false && 'destructive') || 'default'} className="w-full" disabled={pending || state?.success !== true}>
               {(state?.success !== true && state?.message) || 'Verify'}
             </Button>

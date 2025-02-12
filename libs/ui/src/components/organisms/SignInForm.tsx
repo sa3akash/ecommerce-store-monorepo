@@ -9,17 +9,19 @@ import Link from 'next/link';
 import ContinueWithSocial from '../atoms/ContinueWithSocial';
 import SeparateWith from '../atoms/SeparateWith';
 import TermsAndService from '../atoms/TermsAndService';
-import { useActionState } from 'react';
+import { FC, HTMLAttributes, useActionState } from 'react';
 import { signinAction } from '@ecommerce/network/src/actions/auth.action';
 import AlertCommon from '../atoms/AlertCommon';
 import { useRouter } from 'next/navigation';
 
-export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+type Props = HTMLAttributes<HTMLDivElement>
+
+const LoginForm:FC<Props> = ({ className, ...props }) => {
   const [state, action, pending] = useActionState(signinAction, undefined);
 
   const router = useRouter();
   if (state?.success === true) {
-    return router.push('/');
+    router.push('/');
   }
 
   return (
@@ -70,3 +72,6 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
     </div>
   );
 };
+
+
+export default LoginForm
