@@ -1,5 +1,5 @@
 {
-  "name": "@ecommerce/form",
+  "name": "@ecommerce/store",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
+    "@ecommerce/utils": "*",
+    "next-themes": "^0.4.4",
     "zod": "^3.24.1",
-    "@ecommerce/utils":"*"
+    "zustand": "^5.0.3"
   }
 }

@@ -10,6 +10,8 @@ class AuthRoutes {
     this.router.post('/register', AuthController.prototype.register)
     this.router.post('/verify-email', AuthController.prototype.verifyEmail)
     this.router.post('/login', AuthController.prototype.login)
+    this.router.post('/admin/login', AuthController.prototype.adminLogin)
+    this.router.get('/current', AuthController.prototype.current)
 
     return this.router;
   }

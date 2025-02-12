@@ -17,3 +17,12 @@ export type CustomState = {
 }
 
 export type IRole = 'admin' | 'user'
+
+
+
+export interface SessionType {
+  _id: string;
+  name: string;
+  email: string;
+  role: IRole;
+}

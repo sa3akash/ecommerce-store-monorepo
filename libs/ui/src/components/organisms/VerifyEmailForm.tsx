@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import TermsAndService from '../atoms/TermsAndService';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { verifyEmailAction } from '@ecommerce/network/src/actions/auth.action';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -16,9 +16,11 @@ export const VerifyEmailForm = ({ className, ...props }: React.ComponentProps<'d
   const router = useRouter();
   const token = searchParams.get('token');
 
-  if (!token) {
+ useEffect(()=>{
+  if (!token || state?.success === true) {
     router.push('signin');
   }
+ },[router, state?.success, token])
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
@@ -41,8 +43,9 @@ export const VerifyEmailForm = ({ className, ...props }: React.ComponentProps<'d
           </div>
           <div className="flex flex-col gap-6">
             <input type="text" name="token" defaultValue={token || ''} className="sr-only" />
-            <Button type="submit" variant={(state?.success === false && 'destructive') || 'default'} className="w-full" disabled={pending || state?.success !== true}>
-              {(state?.success !== true && state?.message) || 'Verify'}
+            <Button type="submit" variant={(state?.success === false && 'destructive') || 'default'} className="w-full" disabled={pending || state?.success === false}>
+              {state && (state.success === true && state.message || state.message)}
+              {!state && "Verify"}
             </Button>
           </div>
         </div>

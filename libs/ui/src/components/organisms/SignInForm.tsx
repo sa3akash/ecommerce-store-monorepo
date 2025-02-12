@@ -9,20 +9,26 @@ import Link from 'next/link';
 import ContinueWithSocial from '../atoms/ContinueWithSocial';
 import SeparateWith from '../atoms/SeparateWith';
 import TermsAndService from '../atoms/TermsAndService';
-import { FC, HTMLAttributes, useActionState } from 'react';
-import { signinAction } from '@ecommerce/network/src/actions/auth.action';
+import { FC, HTMLAttributes, useActionState, useEffect } from 'react';
+import { signinAdminAction } from '@ecommerce/network/src/actions/auth.action';
 import AlertCommon from '../atoms/AlertCommon';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@ecommerce/store/src/context/auth-provider';
 
-type Props = HTMLAttributes<HTMLDivElement>
+type Props = HTMLAttributes<HTMLDivElement>;
 
-const LoginForm:FC<Props> = ({ className, ...props }) => {
-  const [state, action, pending] = useActionState(signinAction, undefined);
+const LoginForm: FC<Props> = ({ className, ...props }) => {
+  const [state, action, pending] = useActionState(signinAdminAction, undefined);
+
+  const { setUser } = useAuth();
 
   const router = useRouter();
-  if (state?.success === true) {
-    router.push('/');
-  }
+  useEffect(() => {
+    if (state?.success === true) {
+      setUser(state.user);
+      router.push('/');
+    }
+  }, [router, setUser, state?.success, state?.user]);
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
@@ -73,5 +79,4 @@ const LoginForm:FC<Props> = ({ className, ...props }) => {
   );
 };
 
-
-export default LoginForm
+export default LoginForm;

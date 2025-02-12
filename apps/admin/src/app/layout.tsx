@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
-import { Poppins,Roboto } from "next/font/google";
-import "@ecommerce/ui/src/app/globals.css";
-import { ThemeProviderLayout } from "@components/providers/theme-provider"
+import type { Metadata } from 'next';
+import { Poppins, Roboto } from 'next/font/google';
+import '@ecommerce/ui/src/app/globals.css';
+import { RootProvider } from '@store/context/root-provider';
 
 const geistSans = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300" , "400" , "500" , "700" , "900"]
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700', '900']
 });
 
 const robotoFont = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: ["300" , "400" , "500" , "700" , "900"]
+  variable: '--font-roboto',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700', '900']
 });
 
 export const metadata: Metadata = {
@@ -26,13 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.className} ${robotoFont.variable} antialiased`}
-      >
-        <ThemeProviderLayout>
-        {children}
-        </ThemeProviderLayout>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.className} ${robotoFont.variable} antialiased`}>
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );

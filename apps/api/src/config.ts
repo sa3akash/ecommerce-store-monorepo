@@ -14,7 +14,7 @@ class Config {
   public SENDER_EMAIL = process.env.SENDER_EMAIL;
   public SENDER_EMAIL_PASSWORD = process.env.SENDER_EMAIL_PASSWORD;
   public JWT_SECRET = process.env.JWT_SECRET;
-  public SESSION_SECRET_KEY = process.env.SESSION_SECRET_KEY;
+  public ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
   public validateConfig(): void {
     for (const [key, value] of Object.entries(this)) {

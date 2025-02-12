@@ -6,6 +6,15 @@ import express, { Express } from 'express';
 import { SetupServer } from '@/setupServer';
 import dbConnection from '@/setupDatabase';
 import { config } from '@/config';
+import { IAuth } from '@ecommerce/utils/src/interfaces/auth/auth.interfaces';
+
+declare global {
+  namespace Express {
+      interface Request {
+          user?: IAuth;
+      }
+  }
+}
 
 /**
  *

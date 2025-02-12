@@ -76,10 +76,16 @@ class AuthService {
     };
   }
 
+
   // ======================
 
   public async saveAuthData(registerData: IAuthRegister) {
-    return AuthModel.create(registerData);
+    const isAdmin = registerData.email === config.ADMIN_EMAIL;
+
+    return AuthModel.create({
+      ...registerData,
+      role: isAdmin ? 'admin' : 'user'
+    });
   }
 
   public async getAuthByEmail(email: string) {
