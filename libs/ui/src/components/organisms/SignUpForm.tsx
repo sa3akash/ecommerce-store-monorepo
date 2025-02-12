@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '../../lib/utils';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
@@ -7,11 +9,16 @@ import Link from 'next/link';
 import ContinueWithSocial from '../atoms/ContinueWithSocial';
 import SeparateWith from '../atoms/SeparateWith';
 import TermsAndService from '../atoms/TermsAndService';
+import { useActionState } from 'react';
+import { signupAction } from '@ecommerce/network/src/actions/auth.action';
+import AlertCommon from '../atoms/AlertCommon';
 
-export function RegisterForm({ className, ...props }: React.ComponentProps<'div'>) {
+export const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+  const [state, action, pending] = useActionState(signupAction, undefined);
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <form>
+      <form action={action}>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
             <Link href="/" className="flex flex-col items-center gap-2 font-medium">
@@ -31,30 +38,27 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" type="name" placeholder="jonn" required />
+              <Input id="name" name="name" disabled={pending} type="name" placeholder="jonn" required />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="jonn@example.com" required />
+              <Input id="email" name="email" disabled={pending} type="email" placeholder="jonn@example.com" required />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="********"
-                required
-              />
+              <Input id="password" type="password" placeholder="********" required name="password" disabled={pending} />
             </div>
-            <Button type="submit" className="w-full">
+
+            <AlertCommon isError={state?.success !== true} message={state?.message}/>
+            <Button type="submit" className="w-full" disabled={pending}>
               Register
             </Button>
           </div>
-          <SeparateWith text='Or Continue with' />
+          <SeparateWith text="Or Continue with" />
           <ContinueWithSocial />
         </div>
       </form>
-     <TermsAndService />
+      <TermsAndService />
     </div>
   );
-}
+};

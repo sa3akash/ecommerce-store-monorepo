@@ -4,6 +4,7 @@ export type FormState =
         name?: string[]
         email?: string[]
         password?: string[]
+        token?: string[]
       }
       message?: string
     }

@@ -3,6 +3,9 @@ import { AuthModel } from '@modules/auth/auth.model';
 import { ServerError } from 'error-express';
 import { authQueue } from '@/services/queues/authQueue';
 import { jwtService } from '@/services/utils/jwtService';
+import { emailQueue } from '@/services/queues/emailQueue';
+import { config } from '@/config';
+import { emailTemplates } from '@/services/emails';
 
 class AuthService {
   public async registerAuth(registerData: IAuthRegister) {
@@ -38,6 +41,16 @@ class AuthService {
     const existUser = await this.getAuthByEmail(data.email);
     if (!existUser || !(await existUser.comparePassword(data.password))) {
       throw new ServerError('Invalid creadentials', 400);
+    }
+    if (!existUser.varified) {
+      const token = jwtService.signJwt({ authId: `${existUser._id}` });
+      const template = emailTemplates.verifyEmail(`${config.CLIENT_URL}/verify-email?token=${token}`);
+      emailQueue.sendEmail('sendEmail', {
+        receiverEmail: existUser.email,
+        template,
+        subject: 'Verify your email address'
+      });
+      throw new ServerError('Your email not verified. check email and verify.', 400);
     }
 
     // todo: if two fa enable then work

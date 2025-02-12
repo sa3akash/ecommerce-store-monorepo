@@ -10,12 +10,17 @@ import ContinueWithSocial from '../atoms/ContinueWithSocial';
 import SeparateWith from '../atoms/SeparateWith';
 import TermsAndService from '../atoms/TermsAndService';
 import { useActionState } from 'react';
-import { signinAction } from '@ecommerce/network/src/actions/signin.action';
+import { signinAction } from '@ecommerce/network/src/actions/auth.action';
+import AlertCommon from '../atoms/AlertCommon';
+import { useRouter } from 'next/navigation';
 
 export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const [state, action, pending] = useActionState(signinAction, undefined);
 
-  console.log(state);
+  const router = useRouter();
+  if (state?.success === true) {
+    return router.push('/');
+  }
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
@@ -52,11 +57,7 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
               <Input disabled={pending} id="password" name="password" type="password" required placeholder="********" />
             </div>
 
-            {state?.success ===false ? (
-              <div className="bg-rose-300 text-rose-800 px-4 py-3 rounded-md text-sm">{state?.message}</div>
-            ) : (
-              <div className="bg-green-300 text-green-800"> {state?.message} </div>
-            )}
+            <AlertCommon isError={state?.success === false} message={state?.message} />
             <Button type="submit" className="w-full" disabled={pending}>
               Login
             </Button>
