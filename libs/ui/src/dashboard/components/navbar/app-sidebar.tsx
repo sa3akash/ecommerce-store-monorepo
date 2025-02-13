@@ -2,13 +2,13 @@
 
 import * as React from "react"
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "../../components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "../../../components/ui/sidebar"
+
+import { data, navData } from "../data"
 import { TeamSwitcher } from "./team-switcher"
-import { NavMain } from "./nav-main"
-// import { NavProjects } from "./nav-projects"
-import { NavUser } from "./nav-user"
 import { NavDashboard } from "./nav-dashboard"
-import { data, navData } from "./data"
+import { NavMain } from "./nav-main"
+import { NavUser } from "./nav-user"
 
 
 

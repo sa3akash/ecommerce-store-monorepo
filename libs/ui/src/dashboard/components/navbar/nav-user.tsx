@@ -1,26 +1,32 @@
 'use client';
 
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react';
+import { BadgeCheck, Bell, CheckCheck, ChevronsUpDown, CreditCard, LogOut, Moon, Settings, Sparkles, Sun } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../../../components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger
-} from '../../components/ui/dropdown-menu';
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '../../components/ui/sidebar';
+} from '../../../components/ui/dropdown-menu';
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '../../../components/ui/sidebar';
 import { useAuth } from '@ecommerce/store/src/context/auth-provider';
-import { Skeleton } from '../../components/ui/skeleton';
+import { Skeleton } from '../../../components/ui/skeleton';
 import { logoutAction } from '@ecommerce/network/src/actions/auth.action';
+import { useThemes } from '@ecommerce/store/src/context/theme-provider';
 
 export function NavUser() {
   const { isMobile } = useSidebar();
 
   const { user, isLoading } = useAuth();
+  const { setTheme, theme } = useThemes();
 
   if (isLoading) {
     return (
@@ -89,6 +95,30 @@ export function NavUser() {
               <DropdownMenuItem>
                 <Bell />
                 Notifications
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuGroup>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                  Appearance
+                </DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => setTheme('light')}>Light {theme === 'light' && <CheckCheck />}</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme('dark')}>Dark {theme === 'dark' && <CheckCheck />}</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme('system')}>System {theme === 'system' && <CheckCheck />}</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+              <DropdownMenuItem>
+                <Settings />
+                Settings
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

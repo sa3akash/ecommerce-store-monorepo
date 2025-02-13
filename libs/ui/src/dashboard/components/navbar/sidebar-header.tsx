@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react';
-import { SidebarTrigger } from '../../components/ui/sidebar';
-import { Separator } from '../../components/ui/separator';
+import { SidebarTrigger } from '../../../components/ui/sidebar';
+import { Separator } from '../../../components/ui/separator';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,7 +10,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from '../../components/ui/breadcrumb';
+} from '../../../components/ui/breadcrumb';
 import { generateBreadcrumbs, type Breadcrumb as BreadcrumbType } from "./breadcrumbsUtils"
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -35,10 +35,10 @@ const SidebarHeader = () => {
                 {index > 0 && <BreadcrumbSeparator className="hidden md:block" />}
                 <BreadcrumbItem className={index < breadcrumbs.length - 1 ? "hidden md:block" : undefined}>
                   {index === breadcrumbs.length - 1 ? (
-                    <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                    <BreadcrumbPage className="capitalize">{item.label}</BreadcrumbPage>
                   ) : (
                     <BreadcrumbLink asChild>
-                      <Link href={item.href}>{item.label}</Link>
+                      <Link href={item.href} className="capitalize">{item.label}</Link>
                     </BreadcrumbLink>
                   )}
                 </BreadcrumbItem>

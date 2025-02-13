@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import { SidebarInset, SidebarProvider } from '../components/ui/sidebar';
-import { AppSidebar } from './components/app-sidebar';
-import SidebarHeader from './components/sidebar-header';
+import { AppSidebar } from './components/navbar/app-sidebar';
+import SidebarHeader from './components/navbar/sidebar-header';
 
 const DashboardLayout = ({children}:PropsWithChildren) => {
   return (
