@@ -83,63 +83,71 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground w-screen h-screen box-border;
+    @apply bg-background text-foreground;
   }
 
+  /* Custom scrollbar styling. Thanks @pranathiperii. */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  
+  /* Custom scrollbar styling. Thanks @pranathiperii. */
+
   .h1 {
-    @apply text-[96px] leading-[105] tracking-[-1.5%]
+    @apply text-[96px] leading-[105] tracking-[-1.5%];
   }
   .h2 {
-    @apply text-[60px] leading-[68] tracking-[-0.5%]
+    @apply text-[60px] leading-[68] tracking-[-0.5%];
   }
   .h3 {
-    @apply text-[48px] leading-[52] tracking-[0%]
+    @apply text-[48px] leading-[52] tracking-[0%];
   }
   .h4 {
-    @apply text-[34px] leading-[40] tracking-[0.25%]
+    @apply text-[34px] leading-[40] tracking-[0.25%];
   }
 
   .h5 {
-    @apply text-[26px] leading-[32] tracking-[0px]
+    @apply text-[26px] leading-[32] tracking-[0px];
   }
   .h6 {
-    @apply text-[20px] leading-[24] tracking-[0.15%]
+    @apply text-[20px] leading-[24] tracking-[0.15%];
   }
 
   .subTitle-1 {
-    @apply text-[16px] leading-[20] tracking-[1.25%]
+    @apply text-[16px] leading-[20] tracking-[1.25%];
   }
   .subTitle-2 {
-    @apply text-[14px] leading-[20] tracking-[1%]
+    @apply text-[14px] leading-[20] tracking-[1%];
   }
   .body-1 {
-    @apply text-[16px] leading-[24] tracking-[0.5%]
+    @apply text-[16px] leading-[24] tracking-[0.5%];
   }
 
   .body-2 {
-    @apply text-[14px] leading-[20] tracking-[0.25%]
+    @apply text-[14px] leading-[20] tracking-[0.25%];
   }
   .caption {
-    @apply text-[12px] leading-[16] tracking-[0.4%]
+    @apply text-[12px] leading-[16] tracking-[0.4%];
   }
   .overline {
-    @apply text-[10px] leading-[16] tracking-[1.5%]
+    @apply text-[10px] leading-[16] tracking-[1.5%];
   }
 
   .button {
-    @apply text-[14px] leading-[20] tracking-[1.25%]
+    @apply text-[14px] leading-[20] tracking-[1.25%];
   }
   .bg-gradient {
-    @apply bg-gradient-to-r from-[#8974f7] to-[#d25bf7]
-  }
-
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-r from-[#8974f7] to-[#d25bf7];
   }
 }
