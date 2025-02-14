@@ -58,8 +58,8 @@ export class SetupServer {
 
   private standardMiddleware(app: Application): void {
     app.use(compression());
-    app.use(express.json({ limit: '100MB' }));
-    app.use(express.urlencoded({ extended: true, limit: '500MB' }));
+    app.use(express.json({ limit: '50MB' }));
+    app.use(express.urlencoded({ extended: true, limit: '100MB' }));
   }
 
   private routesMiddleware(app: Application): void {

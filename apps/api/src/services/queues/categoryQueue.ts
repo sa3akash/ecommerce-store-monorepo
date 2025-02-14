@@ -5,6 +5,8 @@ class CategoryQueue extends BaseQueue {
   constructor() {
     super('categoryQueue');
     this.processJob('addCategory', 5, categoryWorker.addCategory);
+    this.processJob('updateCategory', 5, categoryWorker.updateCategory);
+    this.processJob('deleteCategory', 5, categoryWorker.deleteCategory);
   }
 
   public add(name: string, data: any): void {
