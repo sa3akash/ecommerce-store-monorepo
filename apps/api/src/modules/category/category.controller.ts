@@ -6,6 +6,7 @@ import { categoryServices } from '@modules/category/category.services';
 import { ServerError } from 'error-express';
 import { redisClient } from '@/services/utils/redisClient';
 import { generateCacheKey } from '@/services/utils/generateCacheKey';
+import { RateLimitCustom } from '@/middleware/rateLimiter';
 
 const PAGE_SIZE = 10;
 
@@ -41,6 +42,7 @@ export class CategoryController {
     res.status(200).json(data);
   }
 
+  // @RateLimitCustom(5)
   public async getSingle(req: Request, res: Response) {
     const { slug } = req.params;
     if (!slug) throw new ServerError('CategoryId params is required.', 400);

@@ -13,7 +13,7 @@ import { createAdapter } from '@socket.io/redis-adapter';
 
 import { config } from '@/config';
 import mainRoute from '@/routes';
-import { routeRateLimiter } from '@services/utils/rateLimiter';
+import { routeRateLimiter } from '@/middleware/rateLimiter';
 
 const log = config.createLogger('SETUP_SERVER');
 
