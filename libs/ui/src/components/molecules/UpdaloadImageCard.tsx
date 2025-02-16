@@ -16,12 +16,12 @@ const UpdaloadImageCard = () => {
 
   // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-  const { setValue, control } = useAddCategoryForm();
+  const { setValue, control,register } = useAddCategoryForm();
 
   const image = useWatch({ control, name: 'image' });
 
   return (
-    <Card className="bg-muted/50 lg:w-[264px]">
+    <Card className="bg-muted/50 lg:w-[264px] h-max">
       <CardHeader>
         <CardTitle>Image</CardTitle>
       </CardHeader>
@@ -31,6 +31,8 @@ const UpdaloadImageCard = () => {
             {image?.url ? (
               <>
                 <Image src={image.url} alt="selected image" fill className="object-cover" />
+                <input type="text" className='sr-only' {...register("image.url")}/>
+                <input type="text" className='sr-only' {...register("image.public_id")}/>
               </>
             ) : (
               <>
@@ -50,7 +52,7 @@ const UpdaloadImageCard = () => {
           //    widget.close();
           // }}
           options={{
-            sources: ['local', 'url', 'unsplash']
+            sources: ['local', 'url', 'unsplash'],
             // multiple: true,
             // maxFiles: 5
           }}

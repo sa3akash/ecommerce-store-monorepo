@@ -7,12 +7,12 @@ import { AddCategoryFormProvider } from '@ecommerce/form/src/forms/category/addC
 
 const AddCategoryPage = () => {
   return (
-    <div className="p-4 flex flex-col lg:flex-row gap-4 flex-nowrap">
-      <AddCategoryFormProvider>
+    <AddCategoryFormProvider>
+      <div className="p-4 flex flex-col lg:flex-row gap-4 relative h-full pb-40">
         <AddCategoryCard />
         <UpdaloadImageCard />
-      </AddCategoryFormProvider>
-    </div>
+      </div>
+    </AddCategoryFormProvider>
   );
 };
 

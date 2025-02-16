@@ -17,7 +17,15 @@ export type IAddCategorySchema = z.infer<typeof addCategorySchema>;
 
 export const useAddCategory = () =>
   useForm<IAddCategorySchema>({
-    resolver: zodResolver(addCategorySchema)
+    resolver: zodResolver(addCategorySchema),
+    defaultValues: {
+      description: '',
+      image: {
+        public_id: '',
+        url: ''
+      },
+      name: ''
+    }
   });
 
 
