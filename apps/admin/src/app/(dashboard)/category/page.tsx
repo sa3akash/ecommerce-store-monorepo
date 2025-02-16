@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Category from '@ui/dashboard/pages/category'
 
-const Category = () => {
+const CategoryPage = () => {
   return (
-    <div>Category</div>
+    <Category />
   )
 }
 
-export default Category
+export default CategoryPage

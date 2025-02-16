@@ -7,14 +7,28 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { useAddCategoryForm } from '@ecommerce/form/src/forms/category/addCategory.form';
 import ProgressUI from '../atoms/ProgressUI';
+import { addCategoryAction } from '@ecommerce/network/src/actions/category.action';
+import { toast } from 'sonner';
 
 const AddCategoryCard = () => {
-  const { register, getValues } = useAddCategoryForm();
+  const { register, getValues, reset } = useAddCategoryForm();
 
   const handleSubmit = async () => {
     const data = getValues();
 
-    console.log(data);
+    if (!data.name || !data.image.url) {
+      toast('All fields are required.');
+      return;
+    }
+
+    const response = await addCategoryAction(data);
+    if (response?.status === 'error') {
+      alert(response?.message);
+    } else {
+      console.log('client', response);
+      toast(response?.message);
+      reset();
+    }
   };
 
   return (

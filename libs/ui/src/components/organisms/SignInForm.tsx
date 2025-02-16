@@ -42,12 +42,12 @@ const LoginForm: FC<Props> = ({ className, ...props }) => {
               <span className="sr-only">Pixmart Shop.</span>
             </Link>
             <h1 className="text-xl font-bold">Welcome to Pixmart Shop.</h1>
-            <div className="text-center text-sm">
+            <h2 className="text-center text-sm">
               Don&apos;t have an account?{' '}
               <Link href="/signup" className="underline underline-offset-4">
                 Sign up
               </Link>
-            </div>
+            </h2>
           </div>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
@@ -56,12 +56,12 @@ const LoginForm: FC<Props> = ({ className, ...props }) => {
             </div>
             {/* {state?.errors?.email && <p className='space-y-2 text-rose-400'>{state.errors.email}</p>} */}
             <div className="grid gap-2">
-              <div className="flex items-center">
+              <h3 className="flex items-center">
                 <Label htmlFor="password">Password</Label>
                 <a href="#" className="ml-auto text-sm underline-offset-2 hover:underline">
                   Forgot your password?
                 </a>
-              </div>
+              </h3>
               <Input disabled={pending} id="password" name="password" type="password" required placeholder="********" />
             </div>
 

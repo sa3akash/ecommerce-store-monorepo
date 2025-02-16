@@ -15,9 +15,9 @@ const SignUpCard = () => {
         <div className="space-y-6 max-w-[400px] mx-auto">
           <div className="space-y-2">
             <h1 className="text-2xl font-semibold">Welcome Back 👋</h1>
-            <p className="text-muted-foreground">
+            <h2 className="text-muted-foreground">
               A brand new day is here. It&apos;s your day to shape. Sign in and get started on your projects.
-            </p>
+            </h2>
           </div>
 
           <div className="space-y-4">
@@ -48,12 +48,12 @@ const SignUpCard = () => {
 
           <AuthSocial />
 
-          <div className="text-center text-sm">
+          <h3 className="text-center text-sm">
             Don&apos;t you have an account?{' '}
             <Link href="/sign-up" className="text-emerald-600 hover:underline">
               Sign up
             </Link>
-          </div>
+          </h3>
 
           <div className="text-center text-xs text-muted-foreground">© {new Date().getFullYear()} ALL RIGHTS RESERVED</div>
         </div>
